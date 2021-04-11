@@ -8,8 +8,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <CppLinuxSerial/SerialPort.hpp>
+#include <CppLinuxSerial/Exception.hpp>
 
 using namespace std;
+using namespace mn::CppLinuxSerial;
 
 int xi_opcode;
 
@@ -69,9 +72,28 @@ static int register_events(Display *dpy,
   return number;
 }
 
+SerialPort openSerialPort(string port) 
+{
+  SerialPort serialPort(port, BaudRate::B_9600);
+  serialPort.SetTimeout(-1); // Block when reading until any data is received
+	serialPort.Open();
+  return serialPort;
+}
+
+// void ledOnOff(SerialPort serialPort)
+// {
+//   if (Event.type == key_press_type) {
+//         serialPort.Write("on\n");
+//       } else {
+//         serialPort.Write("off\n");
+//       }
+// }
+
 static void print_events(Display *dpy)
+
 {
   XEvent Event;
+  SerialPort serialPort = openSerialPort("/dev/ttyACM1");
 
   setvbuf(stdout, NULL, _IOLBF, 0);
 
@@ -87,17 +109,24 @@ static void print_events(Display *dpy)
 
       printf("key %s %d ", (Event.type == key_release_type) ? "release" : "press  ",
              key->keycode);
-
+      
       for (loop = 0; loop < key->axes_count; loop++)
       {
         printf("a[%d]=%d ", key->first_axis + loop, key->axis_data[loop]);
       }
       printf("\n");
+
+      if (Event.type == key_press_type) {
+        serialPort.Write("on\n");
+      } else {
+        serialPort.Write("off\n");
+      }
+
     }
-    else
-    {
-      printf("what's that %d\n", Event.type);
-    }
+    // else
+    // {
+    //   printf("what's that %d\n", Event.type);
+    // }
   }
 }
 
@@ -228,7 +257,7 @@ int main()
   }
 
   char deviceId[10];
-  sprintf(deviceId, "14");
+  sprintf(deviceId, "14"); // This needs to be changed on based on id
 
   test(display, deviceId);
 
