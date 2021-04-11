@@ -74,7 +74,7 @@ static int register_events(Display *dpy,
 
 SerialPort openSerialPort(string port) 
 {
-  SerialPort serialPort(port, BaudRate::B_9600);
+  SerialPort serialPort(port, BaudRate::B_460800);
   serialPort.SetTimeout(-1); // Block when reading until any data is received
 	serialPort.Open();
   return serialPort;
@@ -117,9 +117,9 @@ static void print_events(Display *dpy)
       printf("\n");
 
       if (Event.type == key_press_type) {
-        serialPort.Write("on\n");
+        serialPort.Write("1\n");
       } else {
-        serialPort.Write("off\n");
+        serialPort.Write("0\n");
       }
 
     }
