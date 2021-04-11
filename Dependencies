@@ -1,0 +1,6 @@
+** Dependencies **
+	
+	- sudo apt install xinput	
+	- sudo apt install libx11-dev
+	- sudo apt-get install libxi-dev
+

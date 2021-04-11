@@ -1,0 +1,6 @@
+** Reading keyboard input **
+
+	- Keypresses must be read quickly and accurately
+	- Each keypress must be mappable to an individual led
+	- The key press identifier must identify individual keypresses regardless of which window is in focus
+	- Program must run in background without a window
