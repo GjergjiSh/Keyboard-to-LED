@@ -229,7 +229,7 @@ int test(Display *display, char *deviceId)
   return 0;
 }
 
-int main()
+int main(int argc, char** argv)
 {
   Display *display;
   int event, error;
@@ -257,7 +257,7 @@ int main()
   }
 
   char deviceId[10];
-  sprintf(deviceId, "14"); // This needs to be changed on based on id
+  sprintf(deviceId, argv[1]); // This needs to be changed on based on id
 
   test(display, deviceId);
 
