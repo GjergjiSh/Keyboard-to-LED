@@ -1,3 +1,10 @@
+
+---
+
+C++/Arduino Project to control a WS2812B Strip using a keyboard connected to your PC (WIP)
+
+---
+
 # Installing dependencies
 
 - sudo apt install xinput	
