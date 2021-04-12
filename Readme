@@ -1,4 +1,0 @@
-** Compiling ** 
-	
-	- export LIBRARY_PATH=/usr/local/lib/
-	- gcc ./Main.cpp -lstdc++ -lX11 -lXext -lXi - lCppLinuxSerial
