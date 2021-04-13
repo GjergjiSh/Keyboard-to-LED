@@ -15,7 +15,7 @@ C++/Arduino Project to control a WS2812B Strip using a keyboard connected to you
 # Compiling 
 
 - export LIBRARY_PATH=/usr/local/lib/
-- gcc ./Main.cpp -lstdc++ -lX11 -lXext -lXi - lCppLinuxSerial
+- gcc ./Main.cpp -lstdc++ -lX11 -lXext -lXi -lCppLinuxSerial
 
 # Running 
 
